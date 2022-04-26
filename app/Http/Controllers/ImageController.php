@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
@@ -12,6 +13,19 @@ class ImageController extends Controller
     }
     public function store()
     {
-        //save images
+        request()->validate([
+            'image' => ['required', 'image']
+        ]);
+
+
+        if (!request()->file('image')->store('public/images')) {
+            return response()->json([
+                'error' => "can't upload image"
+            ]);
+        }
+
+        return Image::create([
+            'path' => request()->file('image')->hashName()
+        ]);
     }
 }
