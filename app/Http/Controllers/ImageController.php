@@ -9,8 +9,9 @@ class ImageController extends Controller
 {
     public function index()
     {
-        //show all images
+        return Image::latest()->pluck('path');
     }
+
     public function store()
     {
         request()->validate([
@@ -26,6 +27,6 @@ class ImageController extends Controller
 
         return Image::create([
             'path' => request()->file('image')->hashName()
-        ]);
+        ])->path;
     }
 }

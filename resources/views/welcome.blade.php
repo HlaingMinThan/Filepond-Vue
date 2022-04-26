@@ -27,7 +27,7 @@
     <h1 class="text-center text-4xl">Image uploader</h1>
     <div
         id="app"
-        class="max-w-md mx-auto"
+        class="max-w-3xl mx-auto"
     >
     </div>
     <script src="/js/app.js"></script>
